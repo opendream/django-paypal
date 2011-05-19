@@ -2,12 +2,14 @@
 # -*- coding: utf-8 -*-
 from django.template import RequestContext
 from django.shortcuts import render_to_response
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET
 from paypal.standard.pdt.models import PayPalPDT
 from paypal.standard.pdt.forms import PayPalPDTForm
  
  
 @require_GET
+@csrf_exempt
 def pdt(request, item_check_callable=None, template="pdt/pdt.html", context=None):
     """Payment data transfer implementation: http://tinyurl.com/c9jjmw"""
     context = context or {}
